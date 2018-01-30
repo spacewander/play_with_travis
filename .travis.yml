@@ -5,5 +5,5 @@ dist: trusty
 sudo: required
 
 script:
-- nproc
+- wget http://ftp.cs.stanford.edu/pub/exim/pcre/pcre-$PCRE_VER.tar.gz &
 - ss -nap
