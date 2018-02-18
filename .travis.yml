@@ -1,9 +1,9 @@
-language: c
-os: linux
-dist: trusty
+os: osx
 
 sudo: required
 
 script:
-- wget http://ftp.cs.stanford.edu/pub/exim/pcre/pcre-$PCRE_VER.tar.gz &
-- ss -nap
+- git clone https://github.com/spacewander/homebrew-core -b test
+- cd homebrew-core/Formula
+- brew install --build-from-source git-extras.rb
+- brew audit --strict git-extras.rb
