@@ -3,7 +3,7 @@ os: osx
 sudo: required
 
 script:
-- git clone https://github.com/spacewander/homebrew-core -b test
+- git clone https://github.com/spacewander/homebrew-core -b git-extras
 - cd homebrew-core/Formula
 - brew install --build-from-source git-extras.rb
 - brew audit --strict git-extras.rb
