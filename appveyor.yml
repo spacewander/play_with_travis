@@ -1,0 +1,16 @@
+version: 0.0.1.{build}-test
+shallow_clone: true
+matrix:
+  fast_finish: true
+
+platform:
+  - x64
+
+install:
+  - echo "install"
+
+build_script:
+  - clang sizeof.c -g -o test.exe
+
+test_script:
+  - .\test.exe
