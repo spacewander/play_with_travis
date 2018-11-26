@@ -5,12 +5,13 @@ matrix:
 
 platform:
   - x64
+  - x86
 
 install:
   - echo "install"
 
 build_script:
-  - clang sizeof.c -g -o test.exe
+  - clang -std=c89 -Wpedantic sizeof.c -g -o test.exe
 
 test_script:
   - .\test.exe
