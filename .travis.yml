@@ -1,0 +1,15 @@
+dist: bionic
+
+matrix:
+  include:
+    - os: osx
+
+language: c
+
+
+install:
+  - git clone https://github.com/tj/git-extras
+  - cd git-extras && make
+
+script:
+  - git info
