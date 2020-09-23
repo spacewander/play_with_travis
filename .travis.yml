@@ -8,4 +8,5 @@ language: c
 
 
 script:
+  - git submodule add https://github.com/maonx/vimwiki-assets.git assets
   - git submodule status | sed 's/\([^abcdef0-9]\{0,2\}\)\([abcdef0-9]\{7\}\)\([abcdef0-9]\{33\}\)\(.*\)/\1\2\4/'
