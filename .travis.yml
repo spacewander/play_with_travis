@@ -8,8 +8,8 @@ language: c
 
 
 script:
-  - git clone https://github.com/tj/git-extras.git && cd git-extras
+  - git clone https://github.com/spacewander/git-extras.git -b utimes && cd git-extras
   - touch $(git ls-files | xargs)
   - ls -l $(git ls-files | xargs)
-  - ./bin/git-utimes
+  - make && git utimes
   - ls -l $(git ls-files | xargs)
