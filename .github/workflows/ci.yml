@@ -1,0 +1,26 @@
+name: ci
+on:
+  push:
+    branches: [ "ci/**" ]
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - ubuntu-18.04
+          - macos-latest
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Check out code.
+        uses: actions/checkout@v2
+      - name: Linux Install
+        if: matrix.platform == 'ubuntu-18.04'
+        run: |
+          sudo apt-get install -y bsdmainutils
+      - name: Script
+        run: |
+          git clone https://github.com/tj/git-extras.git && cd git-extras
+          sudo make
+          mv ../t.sh t.sh
+          sudo ./t.sh
