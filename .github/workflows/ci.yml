@@ -24,3 +24,11 @@ jobs:
           sudo make
           mv ../t.sh t.sh
           sudo ./t.sh
+      - name: Bump version
+        if: matrix.platform == 'macos-latest'
+        uses: dawidd6/action-homebrew-bump-formula@v3
+        with:
+          token: ${{secrets.BREW_TOKEN}}
+          formula: git-extras
+          tag: 6.3.0
+          revision: 0c0be924459c68aac9f2cf1acadb302dad1c64f6
