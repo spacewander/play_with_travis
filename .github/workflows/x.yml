@@ -1,0 +1,25 @@
+name: Performance Test
+
+on:
+  pull_request_target:
+    types:
+      - labeled
+    branches: [master, 'release/**']
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+
+permissions:
+  contents: read
+
+jobs:
+  performance:
+    if: github.event_name == 'pull_request' && github.event.label.name == 'performance'
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
