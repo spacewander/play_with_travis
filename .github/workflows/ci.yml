@@ -26,6 +26,21 @@ jobs:
           sudo make
           #sudo ./t.sh
 
+  report-cancelled:
+    runs-on: ubuntu-latest
+    needs: build
+    name: Set commit status to cancelled
+    if: ${{ cancelled() }}
+    steps:
+    - uses: Sibz/github-status-action@650dd1a882a76dbbbc4576fb5974b8d22f29847f # v1.1.6
+      with:
+        authToken: ${{ secrets.GITHUB_TOKEN }}
+        sha: ${{ steps.vars.outputs.sha }}
+        context: ${{ github.workflow }}
+        description: Datapath BPF Complexity tests cancelled
+        state: error
+        target_url: ${{ env.check_url }}
+
   report-success:
     runs-on: ubuntu-latest
     needs: build
@@ -54,19 +69,4 @@ jobs:
         context: ${{ github.workflow }}
         description: Datapath BPF Complexity tests failed
         state: failure
-        target_url: ${{ env.check_url }}
-
-  report-cancelled:
-    runs-on: ubuntu-latest
-    needs: build
-    name: Set commit status to cancelled
-    if: ${{ cancelled() }}
-    steps:
-    - uses: Sibz/github-status-action@650dd1a882a76dbbbc4576fb5974b8d22f29847f # v1.1.6
-      with:
-        authToken: ${{ secrets.GITHUB_TOKEN }}
-        sha: ${{ steps.vars.outputs.sha }}
-        context: ${{ github.workflow }}
-        description: Datapath BPF Complexity tests cancelled
-        state: error
         target_url: ${{ env.check_url }}
